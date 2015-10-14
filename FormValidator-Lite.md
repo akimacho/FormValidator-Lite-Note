@@ -17,9 +17,17 @@ FormValidator::Lite specific modules
 
 ## properties
 
+### public
+
 * $VERSION
 * $Rules
 * $FileRules
+
+### private
+
+* query
+* _error
+* _msg
 
 ## methods
 
@@ -45,3 +53,32 @@ FormValidator::Lite specific modules
 ### private
 
 * _extract_values
+
+===
+
+# new
+
+if argument of new-method is empty, show error message.
+
+```
+my $validator = FormValidator::Lite->new;
+# Usage: FormValidator::Lite->new($q) at eg/new.pl line 5.
+```
+
+* [ref function](http://perldoc.jp/func/ref)
+* [UNIVERSAL](http://perldoc.jp/docs/perl/5.8.8/perlobj.pod#A32Class32is32Simply32a32Package)
+* [Hash::MultiValue](https://metacpan.org/pod/Hash::MultiValue)
+* [flatten](https://metacpan.org/pod/Hash::MultiValue#flatten)
+
+see also : [FormValidator::Lite::Hash]()
+
+# load_function_message
+
+# set_param_message
+
+# check
+
+# has_error
+
+# get_error_messages
+
