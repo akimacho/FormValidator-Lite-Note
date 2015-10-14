@@ -70,13 +70,51 @@ my $validator = FormValidator::Lite->new;
 * [Hash::MultiValue](https://metacpan.org/pod/Hash::MultiValue)
 * [flatten](https://metacpan.org/pod/Hash::MultiValue#flatten)
 
-see also : [FormValidator::Lite::Hash]()
+see also :
+
+* [FormValidator::Lite::Hash](FormValidator-Lite-Hash.md)
 
 # load_function_message
 
+1. load class of message to be displayed when the validation fails
+2. set the messages to _msg
+
+see also : 
+
+* [FormValidator::Lite::Messages::*](FormValidator-Lite-Messages.md)
+* [Class::Load](https://metacpan.org/pod/Class::Load)
+
+
+[sample](eg/ld_func_msg.pl)
+
 # set_param_message
 
+1. set the params to _msg
+
+[sample](eg/set_param_msg.pl)
+
 # check
+
+```
+$validator->check(
+    name => [qw/NOT_NULL/],
+    name_kana => [qw/NOT_NULL KATAKANA/],
+    {mails => [qw/mail1 mail2/]} => ['DUPLICATION'],
+);
+```
+
+## slice(@list, $num1, $num2)
+
+|argument|role|
+|@list|list as target|
+|$num1|index|
+|$num2|the number to be deleted|
+
+[sample](eg/)
+
+# _extract_values
+
+extract the values corresponding to the key
 
 # has_error
 

@@ -11,3 +11,7 @@ my $q = Stub->new(
 );
 p $q->isa('Stub');# => 1
 p UNIVERSAL::isa($q, 'Stub');# => 1
+
+__END__
+1
+1
