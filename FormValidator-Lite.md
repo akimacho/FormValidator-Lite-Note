@@ -4,55 +4,55 @@
 
 CPAN modules
 
-* Carp
-* Scalar::Util
-* Class::Accessor::Lite
-* Class::Load
+* [ ](Carp)
+* [ ](Scalar::Util)
+* [ ](Class::Accessor::Lite)
+* [ ](Class::Load)
 
 FormValidator::Lite specific modules
 
-* FormValidator::Lite::Constraint::Default
-* FormValidator::Lite::Upload
-* FormValidator::Lite::Hash
+* [ ](FormValidator::Lite::Constraint::Default)
+* [ ](FormValidator::Lite::Upload)
+* [ ](FormValidator::Lite::Hash)
 
 ## properties
 
 ### public
 
-* $VERSION
-* $Rules
-* $FileRules
+* [ ]($VERSION)
+* [ ]($Rules)
+* [ ]($FileRules)
 
 ### private
 
-* query
-* _error
-* _msg
+* [ ](query)
+* [ ](_error)
+* [ ](_msg)
 
 ## methods
 
 ### public
 
-* import
-* check
-* is_error
-* is_valid
-* has_error
-* set_error
-* errors
-* load_constraints
-* load_function_message
-* set_param_message
-* set_message_data
-* set_message
-* get_error_messages
-* get_error_message
-* build_message
-* get_error_messages_from_param
+* [ ](import)
+* [ ](check)
+* [ ](is_error)
+* [ ](is_valid)
+* [ ](has_error)
+* [ ](set_error)
+* [ ](errors)
+* [ ](load_constraints)
+* [ ](load_function_message)
+* [ ](set_param_message)
+* [ ](set_message_data)
+* [ ](set_message)
+* [ ](get_error_messages)
+* [ ](get_error_message)
+* [ ](build_message)
+* [ ](get_error_messages_from_param)
 
 ### private
 
-* _extract_values
+* [ ](_extract_values)
 
 ===
 
@@ -103,6 +103,36 @@ $validator->check(
 );
 ```
 
+FormValidator/Lite.pm l53 - l64
+
+```
+                    if ((not (defined $_ && length $_)) && $rule_name !~ /^(NOT_NULL|NOT_BLANK|REQUIRED)$/) {
+                        1;
+                    } else {
+```
+
+1)
+
+not (defined $_ && length $_)
+=> (not defined $_) || (not lenght $_)
+「$_が定義されていない」か「$_の文字列長が0」の場合、true
+
+ルール名($rule_name)が、NOT_NULL、NOT_BLANK、REQUIREDでない場合、true
+
+1)以外
+
+a)  $File->{$rule_name}がNOTNULLの場合、
+$file_rule->(@$args)がtrueの場合、true
+b)  a)以外
+$Rules->{$rule_name}がtrueでない場合、エラーログを吐く
+$code->(@$args)がtrueの場合、true
+
+バリデーションに成功ならば、$is_okに1、そうでない場合0
+
+l65 - l67
+
+$is_okが0の場合、エラーメッセージを設定
+
 ## slice(@list, $num1, $num2)
 
 |argument|role|
@@ -115,6 +145,20 @@ $validator->check(
 # _extract_values
 
 extract the values corresponding to the key
+
+## argument
+
+* $key (scaler)
+
+## return value
+
+* $key (scaler)
+* @values (array)
+
+### note
+
+$rule_name  - ルール名
+$args       - 引数名
 
 # has_error
 
